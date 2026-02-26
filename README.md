@@ -59,12 +59,12 @@ Watch the AI process requests and stream the response chunk-by-chunk, creating a
 
 1. **Clone the repository:**
    ```bash
-   git clon [https://github.com/marius2347/ChatVMChecker-using-Azure-OpenAI-.NET-Angular-RxJs-in-CSharp.git
+   git clone [https://github.com/marius2347/ChatVMChecker-using-Azure-OpenAI-.NET-Angular-RxJs-in-CSharp.git
    
 2. **Configure the Backend:**
 * Open the `.NET` project and locate the Azure OpenAI configuration variables in `Program.cs` or `appsettings.json`.
 * Insert your `Endpoint`, `ApiKey`, and `ModelId`.
-* Run the API (defaults to `http://localhost:5000`).
+* Run the API `dotnet run` (defaults to `http://localhost:5000`).
 
 3. **Run the Frontend:**
 * Navigate to the Angular project folder.
