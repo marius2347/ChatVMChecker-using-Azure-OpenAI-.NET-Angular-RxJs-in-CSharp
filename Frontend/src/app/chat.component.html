@@ -1,0 +1,53 @@
+<mat-sidenav-container class="chat-container">
+  <mat-sidenav #sidenav mode="side" opened class="chat-sidenav">
+    <h3 class="sidenav-title">🖥️ VM Controller</h3>
+
+    <mat-list>
+      @for (vm of vms; track vm.name) {
+      <mat-list-item class="vm-item">
+        <div class="vm-row">
+          <div class="vm-name">{{ vm.name }}</div>
+          <div class="vm-state" [class.running]="vm.powerState === 'Running'" [class.stopped]="vm.powerState === 'Stopped'">
+            {{ vm.powerState }}
+          </div>
+        </div>
+      </mat-list-item>
+      }
+    </mat-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="chat-content">
+    <mat-list class="message-list">
+      @for (message of messages; track message) {
+      <mat-list-item class="message-item">
+        <mat-card [class.user-card]="message.role === 'user'" [class.assistant-card]="message.role === 'assistant'">
+          <mat-card-content>
+            <strong>{{ message.role === 'user' ? 'You' : 'Assistant' }}:</strong>
+            <p class="message-text">{{ message.content }}</p>
+          </mat-card-content>
+        </mat-card>
+      </mat-list-item>
+      }
+
+      @if (isLoading) {
+      <mat-list-item class="message-item">
+        <mat-card class="assistant-card">
+          <mat-card-content>
+            <em>Thinking...</em>
+          </mat-card-content>
+        </mat-card>
+      </mat-list-item>
+      }
+    </mat-list>
+
+    <div class="input-container">
+      <mat-form-field appearance="outline" class="message-input">
+        <mat-label>Type your message</mat-label>
+        <input matInput [(ngModel)]="userInput" (keypress)="onKeyPress($event)" placeholder="e.g., List VMs in QA" />
+      </mat-form-field>
+      <button mat-fab color="primary" (click)="sendMessage()" [disabled]="isLoading">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
